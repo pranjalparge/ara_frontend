@@ -76,7 +76,6 @@ export const NavMenu = () => {
       ],
     },
 
-  
     {
       subheader: '',
       items: [
@@ -87,8 +86,16 @@ export const NavMenu = () => {
 
           disabled: user?.role === 0 ? true : false,
         },
+        {
+          title: 'College Master',
+          path: paths.admin.collegeMaster,
+          icon: ICONS.user,
+
+          disabled: user?.role === 0 ? true : false,
+        },
       ],
     },
+
     // {
     //   subheader: '',
     //   items: [

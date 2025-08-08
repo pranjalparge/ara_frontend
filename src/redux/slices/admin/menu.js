@@ -98,10 +98,19 @@ export const authApi = apiSliceAdmin.injectEndpoints({
         // credentials: 'include',
       }),
     }),
-        getCandidateList: builder.mutation({
-      query: (body) => ({
 
-           url: `araController/getcandidateList?course_name=${body.course_name}&choicecode=${body.choicecode}`,
+    getCollegeMaster: builder.mutation({
+      query: (body) => ({
+        url: `araController/getinstituteDetails?course_name=${body.id}`,
+        method: 'GET',
+        // body: body,
+        // credentials: 'include',
+      }),
+    }),
+
+    getCandidateList: builder.mutation({
+      query: (body) => ({
+        url: `araController/getcandidateList?course_name=${body.course_name}&choicecode=${body.choicecode}`,
         method: 'GET',
         // body: body,
         // credentials: 'include',
@@ -282,7 +291,7 @@ export const authApi = apiSliceAdmin.injectEndpoints({
       query: (url) => ({
         url: `api/statusBar/get`,
         method: 'GET',
-        params: { url},
+        params: { url },
       }),
     }),
   }),
@@ -300,6 +309,7 @@ export const {
   useGetSubscriptionListMutation,
   useUpdateSubscriptionMutation,
   useGetInstituteDashboardMutation,
+  useGetCollegeMasterMutation,
   useGetCandidateListMutation,
   useDeleteAdminListMutation,
   useGetCustomerListMutation,

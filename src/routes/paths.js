@@ -83,12 +83,6 @@ export const paths = {
     JobDetails: `${ROOTS.ADMINDASHBOARD}/list-jobs`,
     EditJob: `${ROOTS.ADMINDASHBOARD}/edit-jobs`,
 
-
-
-   
-
-   
-
     foodTypes: `${ROOTS.ADMINDASHBOARD}/food-types`,
     plan: `${ROOTS.ADMINDASHBOARD}/list-applicants`,
     planLlc: `${ROOTS.ADMINDASHBOARD}/applicants-llc`,
@@ -101,16 +95,14 @@ export const paths = {
     qrPayment: `${ROOTS.ADMINDASHBOARD}/qrPaymentList`,
     seoStatus: `${ROOTS.ADMINDASHBOARD}/seo-status`,
 
-
-
     //ara
-        adminList: `${ROOTS.ADMINDASHBOARD}/adminList`,
+    adminList: `${ROOTS.ADMINDASHBOARD}/adminList`,
+    collegeMaster: `${ROOTS.ADMINDASHBOARD}/collegeMaster`,
 
+    admittedCandidate: (choice_code, course_name) =>
+      `${ROOTS.ADMINDASHBOARD}/admittedCandidate/${course_name}/${choice_code}`,
 
-       admittedCandidate: (choice_code, course_name) =>
-          `${ROOTS.ADMINDASHBOARD}/admittedCandidate/${course_name}/${choice_code}`,
-       
-       listOfDocument: (user_id, course_name) =>
-          `${ROOTS.ADMINDASHBOARD}/list-of-document/${course_name}/${user_id}`,
+    listOfDocument: (user_id, course_name) =>
+      `${ROOTS.ADMINDASHBOARD}/list-of-document/${course_name}/${user_id}`,
   },
 };

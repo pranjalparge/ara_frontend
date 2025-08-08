@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import { CONFIG } from 'src/config-global'; 
+import { CONFIG } from 'src/config-global';
 import { DashboardLayout } from 'src/layouts/admin/dashboard';
 
 import { LoadingScreen } from 'src/components/loading-screen';
@@ -13,7 +13,6 @@ import { AuthGuard } from 'src/auth/admin/guard';
 // Overview
 const IndexPage = lazy(() => import('src/pages/admin'));
 const Profile = lazy(() => import('src/pages/admin/profile/index'));
-
 
 const Register = lazy(() => import('src/pages/admin/register/index'));
 
@@ -29,9 +28,6 @@ const Item = lazy(() => import('src/pages/admin/item/list'));
 const JobDetails = lazy(() => import('src/pages/admin/fpii/jobDetails/index'));
 const EditJob = lazy(() => import('src/sections/admin/fpii/jobDetails/edit-job-post'));
 
-
-
-
 const FoodTypes = lazy(() => import('src/pages/admin/foodTypes/index'));
 const Plan = lazy(() => import('src/pages/admin/plan/index'));
 
@@ -41,9 +37,9 @@ const Payment = lazy(() => import('src/pages/admin/payment/index'));
 const Orders = lazy(() => import('src/pages/admin/orders/index'));
 const QRPayment = lazy(() => import('src/pages/admin/qrPayment/index'));
 
-
 //ara
 const Admin = lazy(() => import('src/pages/admin/adminList/index'));
+const CollegeMaster = lazy(() => import('src/pages/admin/collegeMaster/index'));
 const AdmittedList = lazy(() => import('src/pages/admin/adminList/admittedList'));
 const ListOfDocument = lazy(() => import('src/pages/admin/adminList/admittedList'));
 
@@ -75,9 +71,7 @@ export const adminDashboardRoutes = [
         path: 'list-contact-us',
         element: <Item />,
       },
- 
-    
-   
+
       {
         path: 'list-blog',
         element: <Menu />,
@@ -91,7 +85,6 @@ export const adminDashboardRoutes = [
         element: <Plan />,
       },
 
-   
       {
         path: 'list-contactus',
         element: <Subscription />,
@@ -120,15 +113,7 @@ export const adminDashboardRoutes = [
         path: 'edit-brand',
         element: <EditBrand />,
       },
- 
-   
-   
-  
-   
- 
- 
- 
-  
+
       {
         path: 'customerList',
         element: <Customer />,
@@ -137,10 +122,14 @@ export const adminDashboardRoutes = [
         path: 'adminList',
         element: <Admin />,
       },
-       {
-  path: 'admittedCandidate/:course_name/:choice_code',
-  element: <AdmittedList />,
-},
+      {
+        path: 'admittedCandidate/:course_name/:choice_code',
+        element: <AdmittedList />,
+      },
+      {
+        path: 'collegeMaster',
+        element: <CollegeMaster />,
+      },
       {
         path: 'payment',
         element: <Payment />,
@@ -153,8 +142,6 @@ export const adminDashboardRoutes = [
         path: 'qrPaymentList',
         element: <QRPayment />,
       },
-
-  
     ],
   },
 ];
