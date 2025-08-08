@@ -1,0 +1,23 @@
+import { Helmet } from 'react-helmet-async';
+import { AuthGuard } from 'src/auth/admin/guard';
+
+import { CONFIG } from 'src/config-global';
+
+import { JobListView } from 'src/sections/admin/fpii/jobDetails/job-list-view';
+
+// ----------------------------------------------------------------------
+
+const metadata = { title: `Item list | Dashboard - ${CONFIG.appName}` };
+
+export default function Page() {
+  return (
+    <>
+      <Helmet>
+        <title> {metadata.title}</title>
+      </Helmet>
+      <AuthGuard>
+        <JobListView />
+      </AuthGuard>
+    </>
+  );
+}

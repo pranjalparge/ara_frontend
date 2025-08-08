@@ -1,0 +1,22 @@
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+
+import { GithubIcon, GoogleIcon, TwitterIcon } from 'src/assets/icons';
+
+// ----------------------------------------------------------------------
+
+export function FormSocials({
+  sx,
+  signInWithGoogle,
+  singInWithGithub,
+  signInWithTwitter,
+  ...other
+}) {
+  return (
+    <Box gap={1.5} display="flex" justifyContent="center" sx={sx} {...other}>
+      <IconButton color="inherit" onClick={signInWithGoogle}>
+        <GoogleIcon width={22} />
+      </IconButton>
+    </Box>
+  );
+}
