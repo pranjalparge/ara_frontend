@@ -37,12 +37,15 @@ const Plan = lazy(() => import('src/pages/admin/plan/index'));
 
 const Subscription = lazy(() => import('src/pages/admin/subscription/index'));
 const Customer = lazy(() => import('src/pages/admin/customerList/index'));
-const Admin = lazy(() => import('src/pages/admin/adminList/index'));
-
-const AdmittedList = lazy(() => import('src/pages/admin/adminList/admittedList'));
 const Payment = lazy(() => import('src/pages/admin/payment/index'));
 const Orders = lazy(() => import('src/pages/admin/orders/index'));
 const QRPayment = lazy(() => import('src/pages/admin/qrPayment/index'));
+
+
+//ara
+const Admin = lazy(() => import('src/pages/admin/adminList/index'));
+const AdmittedList = lazy(() => import('src/pages/admin/adminList/admittedList'));
+const ListOfDocument = lazy(() => import('src/pages/admin/adminList/admittedList'));
 
 // ----------------------------------------------------------------------
 
@@ -137,8 +140,7 @@ export const adminDashboardRoutes = [
        {
   path: 'admittedCandidate/:course_name/:choice_code',
   element: <AdmittedList />,
-}
-,
+},
       {
         path: 'payment',
         element: <Payment />,

@@ -95,11 +95,22 @@ export const paths = {
     planSaas: `${ROOTS.ADMINDASHBOARD}/applicants-saas`,
     subscription: `${ROOTS.ADMINDASHBOARD}/subscription`,
     customerList: `${ROOTS.ADMINDASHBOARD}/customerList`,
-    adminList: `${ROOTS.ADMINDASHBOARD}/adminList`,
-    admittedCandidate: `${ROOTS.ADMINDASHBOARD}/admittedCandidate`,
+
     payment: `${ROOTS.ADMINDASHBOARD}/payment`,
     databaseMode: `${ROOTS.ADMINDASHBOARD}/databaseMode`,
     qrPayment: `${ROOTS.ADMINDASHBOARD}/qrPaymentList`,
     seoStatus: `${ROOTS.ADMINDASHBOARD}/seo-status`,
+
+
+
+    //ara
+        adminList: `${ROOTS.ADMINDASHBOARD}/adminList`,
+
+
+       admittedCandidate: (choice_code, course_name) =>
+          `${ROOTS.ADMINDASHBOARD}/admittedCandidate/${course_name}/${choice_code}`,
+       
+       listOfDocument: (user_id, course_name) =>
+          `${ROOTS.ADMINDASHBOARD}/list-of-document/${course_name}/${user_id}`,
   },
 };

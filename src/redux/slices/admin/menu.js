@@ -98,6 +98,15 @@ export const authApi = apiSliceAdmin.injectEndpoints({
         // credentials: 'include',
       }),
     }),
+        getCandidateList: builder.mutation({
+      query: (body) => ({
+
+           url: `araController/getcandidateList?course_name=${body.course_name}&choicecode=${body.choicecode}`,
+        method: 'GET',
+        // body: body,
+        // credentials: 'include',
+      }),
+    }),
     deleteAdminList: builder.mutation({
       query: (body) => ({
         url: `api/userDetails/deleteuser`,
@@ -291,6 +300,7 @@ export const {
   useGetSubscriptionListMutation,
   useUpdateSubscriptionMutation,
   useGetInstituteDashboardMutation,
+  useGetCandidateListMutation,
   useDeleteAdminListMutation,
   useGetCustomerListMutation,
   useGetPaymentListMutation,
