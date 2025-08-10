@@ -88,7 +88,7 @@ const columns = [
         const courseName = encodeURIComponent(selectedDepartment); // from your state/context
         const user_id = params.row.user_id;
 
-        router.push(paths.admin.listOfDocument(user_id, courseName));
+        router.push(paths.admin.listOfDocument(courseName,user_id ));
       };
 
       return (

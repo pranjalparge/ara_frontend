@@ -8,13 +8,13 @@ import { useParams } from 'react-router-dom';
 import { CustomBreadcrumbs } from 'src/components/custom-breadcrumbs';
 import { EmptyContent } from 'src/components/empty-content';
 import { DashboardContent } from 'src/layouts/admin/dashboard';
-import { useGetCandidateListMutation, useDeleteAdminListMutation } from 'src/redux/slices/admin/menu';
+import { useGetDocumentListMutation, useDeleteAdminListMutation } from 'src/redux/slices/admin/menu';
 
 export function ProductListView2() {
   const [tableData, setTableData] = useState([]);
   const router = useRouter();
-    const { course_name, choice_code } = useParams(); // 👈 gets values from URL
-  const [getAdminList, { data, isLoading, isSuccess }] = useGetCandidateListMutation();
+    const { course_name, user_id } = useParams(); // 👈 gets values from URL
+  const [getAdminList, { data, isLoading, isSuccess }] = useGetDocumentListMutation();
   const [deleteAdmin] = useDeleteAdminListMutation(); // ✅ mutation at top level
 const [selectedDepartment, setSelectedDepartment] = useState('march');
 
@@ -51,88 +51,45 @@ const [tableRows, setTableRows] = useState([]);
 
 const mapResponseToRows = (data) => {
   return data.map((item, index) => ({
-    id: index + 1, // serial number in the grid
-    instName: item.instName,            // college name
-    course_name: item.course_name,      // course
-    capRound: item.capRound,            // round
-    full_name: item.full_name,          // candidate name
-    rank: item.rank,                    // rank/SML
-    application_id: item.application_id, // application no
-    category: item.category,            // category
-    seattype: item.seattype,             // quota
-    collageStatus: item.collageStatus,  // college status
-    soStatus: item.soStatus,            // SO status
-    roStatus: item.roStatus,            // RO status
-    directorStatus: item.directorStatus // director status
+    id: index + 1, // Sr.No.
+    documentName: item.name, // Document Name
+    status: item.isUploaded ? "Uploaded" : "Pending", // Or actual status if given
+    fileName: item.fileName, // For view/download
+    soRoDirStatus: item.soRoDirStatus || "Pending", // adjust if field name different
+    remark: item.remark || "" // Remark if exists
   }));
-};
-
-const handleClick = () => {
-  const courseName = encodeURIComponent(selectedDepartment);
-  const choiceCode = params.row.choicecode;
-
-  // ✅ Direct push with built URL
-  router.push(paths.admin.admittedCandidate(courseName, choiceCode));
 };
 
 
 const columns = [
-  { field: 'id', headerName: 'Sr', width: 80 },
-   {
-    field: 'action',
-    headerName: 'Action',
-    width: 100,
-    sortable: false,
-    renderCell: (params) => (
-      <Button
-        variant="text"
-        color="error"
-        size="small"
-        onClick={() => {
-          console.log("Edit clicked for ID:", params.row.id);
-          // Example: navigate to edit page with candidate ID
-          // router.push(`/editCandidate/${params.row.id}`);
-        }}
-        sx={{ textTransform: 'none', fontWeight: 'bold' }}
-      >
-        EdIt
-      </Button>
-    )
-  },
-  { field: 'instName', headerName: 'Institute Name', flex: 1, minWidth: 300 },
-  { field: 'course_name', headerName: 'Course', minWidth: 200 },
-  { field: 'capRound', headerName: 'Round', minWidth: 140 },
-  { field: 'full_name', headerName: 'Candidate Name', flex: 1, minWidth: 220 },
-  { field: 'rank', headerName: 'Rank/SML', width: 120 },
-  { field: 'application_id', headerName: 'App No', width: 150 },
-  { field: 'category', headerName: 'Category', width: 120 },
-  { field: 'seattype', headerName: 'Quota', width: 100 },
   {
-    field: 'collageStatus',
-    headerName: 'College Status',
-    width: 160,
+    field: 'view',
+    headerName: 'View',
+    width: 80,
     renderCell: (params) => (
-      <Typography
-        variant="body2"
-        sx={{
-          backgroundColor: params.value === 'Verified' ? 'lightgreen' : 'transparent',
-          px: 1,
-          borderRadius: 1
-        }}
-      >
-        {params.value}
-      </Typography>
+      params.row.fileName ? (
+        <a
+          href={`/uploads/${params.row.fileName}`} // adjust path to your API/file location
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View
+        </a>
+      ) : (
+        "-"
+      )
     )
   },
-  { field: 'soStatus', headerName: 'SO Status', width: 140 },
-  { field: 'roStatus', headerName: 'RO Status', width: 140 },
-  { field: 'directorStatus', headerName: 'Director Status', width: 160 }
+  { field: 'id', headerName: 'Sr.No.', width: 100 },
+  { field: 'name', headerName: 'Document Name', flex: 1, minWidth: 300 },
+  { field: 'soRoDirStatus', headerName: 'SO/RO/Dir Status', width: 180 },
+  { field: 'remark', headerName: 'Remark', flex: 1, minWidth: 200 }
 ];
 
 
 
   useEffect(() => {
-    getAdminList({course_name:course_name, choicecode:choice_code});
+    getAdminList({course_name:course_name, user_id:user_id});
   }, []);
 
   useEffect(() => {

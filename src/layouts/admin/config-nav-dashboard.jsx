@@ -80,6 +80,13 @@ export const NavMenu = () => {
     {
       subheader: '',
       items: [
+            {
+          title: 'Processing Fees',
+          path: paths.admin.processingPayment,
+          icon: ICONS.user,
+
+          disabled: user?.role === 0 ? true : false,
+        },
         {
           title: 'Institute wise Dashboard',
           path: paths.admin.adminList,

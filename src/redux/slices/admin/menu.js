@@ -98,10 +98,26 @@ export const authApi = apiSliceAdmin.injectEndpoints({
         // credentials: 'include',
       }),
     }),
-        getCandidateList: builder.mutation({
-      query: (body) => ({
 
-           url: `araController/getcandidateList?course_name=${body.course_name}&choicecode=${body.choicecode}`,
+    getCandidateList: builder.mutation({
+      query: (body) => ({
+        url: `araController/getcandidateList?course_name=${body.course_name}&choicecode=${body.choicecode}`,
+        method: 'GET',
+        // body: body,
+        // credentials: 'include',
+      }),
+    }),
+      getProcessingPayment: builder.mutation({
+      query: (body) => ({
+        url: `araController/getpaymentstatus?course_name=${body.course_name}&status=${body.status}`,
+        method: 'GET',
+        // body: body,
+        // credentials: 'include',
+      }),
+    }),
+        getDocumentList: builder.mutation({
+      query: (body) => ({
+        url: `/araController/getDocList?course_name=${body.course_name}&user_id=${body.user_id}`,
         method: 'GET',
         // body: body,
         // credentials: 'include',
@@ -282,7 +298,7 @@ export const authApi = apiSliceAdmin.injectEndpoints({
       query: (url) => ({
         url: `api/statusBar/get`,
         method: 'GET',
-        params: { url},
+        params: { url },
       }),
     }),
   }),
@@ -300,6 +316,7 @@ export const {
   useGetSubscriptionListMutation,
   useUpdateSubscriptionMutation,
   useGetInstituteDashboardMutation,
+  useGetProcessingPaymentMutation,
   useGetCandidateListMutation,
   useDeleteAdminListMutation,
   useGetCustomerListMutation,
@@ -315,6 +332,7 @@ export const {
   useDeleteBlogDetailsfpiiMutation,
   useDeleteBlogDetailsllcMutation,
 
+  useGetDocumentListMutation,
   useGetBlogDetailssaasMutation,
   useEditBlogDetailsllcMutation,
 

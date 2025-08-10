@@ -104,13 +104,15 @@ export const paths = {
 
 
     //ara
+
+    processingPayment: `${ROOTS.ADMINDASHBOARD}/processingPayment`,
         adminList: `${ROOTS.ADMINDASHBOARD}/adminList`,
 
 
        admittedCandidate: (choice_code, course_name) =>
           `${ROOTS.ADMINDASHBOARD}/admittedCandidate/${course_name}/${choice_code}`,
        
-       listOfDocument: (user_id, course_name) =>
+       listOfDocument: (course_name,user_id) =>
           `${ROOTS.ADMINDASHBOARD}/list-of-document/${course_name}/${user_id}`,
   },
 };
