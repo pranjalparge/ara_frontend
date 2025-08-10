@@ -316,7 +316,6 @@ export const {
   useGetSubscriptionListMutation,
   useUpdateSubscriptionMutation,
   useGetInstituteDashboardMutation,
-  useGetProcessingPaymentMutation,
   useGetCandidateListMutation,
   useDeleteAdminListMutation,
   useGetCustomerListMutation,

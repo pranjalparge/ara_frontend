@@ -20,7 +20,9 @@ const ICONS = {
   subscription: icon('ic-subscription'),
   payment: icon('ic-payment'),
   orders: icon('ic-orders'),
-  register: <Iconify icon="material-symbols:how-to-reg" />
+  register: <Iconify icon="material-symbols:how-to-reg" />,
+  institute: <Iconify icon="garden:book-closed-fill-12" />,
+  college: <Iconify icon="maki:college" />,
 };
 
 // ----------------------------------------------------------------------
@@ -76,7 +78,6 @@ export const NavMenu = () => {
       ],
     },
 
-  
     {
       subheader: '',
       items: [
@@ -90,12 +91,20 @@ export const NavMenu = () => {
         {
           title: 'Institute wise Dashboard',
           path: paths.admin.adminList,
-          icon: ICONS.user,
+          icon: ICONS.institute,
+
+          disabled: user?.role === 0 ? true : false,
+        },
+        {
+          title: 'College Master',
+          path: paths.admin.collegeMaster,
+          icon: ICONS.college,
 
           disabled: user?.role === 0 ? true : false,
         },
       ],
     },
+
     // {
     //   subheader: '',
     //   items: [
