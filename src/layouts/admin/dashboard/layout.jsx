@@ -145,7 +145,7 @@ export function DashboardLayout({ sx, children, header, data }) {
                   <Typography variant="h5">
                     <strong>
                       {' '}
-                   Admin Panel <br />
+                   ARA Mumbai <br />
                     </strong>
                   </Typography>
 

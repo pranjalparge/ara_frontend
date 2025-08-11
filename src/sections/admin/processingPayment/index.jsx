@@ -15,7 +15,7 @@ export function ProductListView() {
   const [getAdminList, { data, isLoading, isSuccess }] = useGetProcessingPaymentMutation();
   const [deleteAdmin] = useDeleteAdminListMutation(); // ✅ mutation at top level
 const [selectedDepartment, setSelectedDepartment] = useState('march');
-const [selectedStatus, setSelectedStatus] = useState('');
+const [selectedStatus, setSelectedStatus] = useState('SUCCESS');
   const [filteredData, setFilteredData] = useState([]);
 
 const handleShow = async () => {
@@ -51,20 +51,32 @@ const handleShow = async () => {
   const [selectedDept, setSelectedDept] = useState('MARCH');
 const [tableRows, setTableRows] = useState([]);
 
-
 const mapResponseToRows = (data) => {
-  return data.map((item) => ({
-    id: item.id,
-    instituteName: item.institute_name,
-    intake: item.intake,
-    admissions: item.admissions,
-    vacancy: item.vacancy,
-    recommended: item.recommended,
-    notRecommended: item.not_recommended,
-    cancellation: item.cancellation,
-    araCancellation: item.ara_cancellation,
-  }));
+  if (!data) return []; // no data at all
+
+  // Ensure we always work with an array
+  const arr = Array.isArray(data) ? data : [data];
+
+  return arr
+    .filter((item) => item) // remove undefined/null
+    .map((item, index) => ({
+      id: item?.id ?? index + 1, // safe access
+      institute_name: item?.institute_name ?? item?.["Institute Name"] ?? "",
+      intake: item?.intake ?? item?.["CAP Intake"] ?? 0,
+      admissions: item?.admissions ?? item?.["Total Admitted"] ?? 0,
+      vacancy:
+        (item?.intake ?? item?.["CAP Intake"] ?? 0) -
+        (item?.admissions ?? item?.["Total Admitted"] ?? 0),
+      recommended: item?.recommended ?? 0,
+      notRecommended: item?.not_recommended ?? 0,
+      cancellation: item?.cancellation ?? 0,
+      araCancellation: item?.ara_cancellation ?? 0,
+      choicecode: item?.choicecode ?? "",
+    }));
 };
+
+
+
 
 
 
@@ -202,9 +214,9 @@ const columns = [
         }}
       >
         <DataGrid
-            getRowId={(row) => row.id} // optional now since we added `id`
-          rows={tableData ?? []}
-          columns={columns}
+        rows={mapResponseToRows(data)}
+  columns={columns}
+  getRowId={(row, index) => row.id || row['Institute Id'] || index}
           loading={isLoading}
           getRowHeight={() => 'auto'}
           autoHeight={true}

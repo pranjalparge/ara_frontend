@@ -301,6 +301,15 @@ export const authApi = apiSliceAdmin.injectEndpoints({
         params: { url },
       }),
     }),
+
+        getCollegeMaster: builder.mutation({
+      query: (body) => ({
+        url: `araController/getinstituteDetails?course_name=${body.id}`,
+        method: 'GET',
+        // body: body,
+        // credentials: 'include',
+      }),
+    }),
   }),
 });
 
@@ -316,6 +325,7 @@ export const {
   useGetSubscriptionListMutation,
   useUpdateSubscriptionMutation,
   useGetInstituteDashboardMutation,
+  useGetProcessingPaymentMutation,
   useGetCandidateListMutation,
   useDeleteAdminListMutation,
   useGetCustomerListMutation,
@@ -338,7 +348,7 @@ export const {
   useGetAppMutation,
   useEditAppMutation,
   useDeleteAppMutation,
-
+  useGetCollegeMasterMutation,
   useGetBrandMutation,
   useCreateBrandMutation,
   useEditBrandMutation,
