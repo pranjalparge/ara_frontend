@@ -42,6 +42,7 @@ const QRPayment = lazy(() => import('src/pages/admin/qrPayment/index'));
 const ProcessingPayment = lazy(() => import('src/pages/admin/processingPayment/index'));
 const Admin = lazy(() => import('src/pages/admin/adminList/index'));
 const CollegeMaster = lazy(() => import('src/pages/admin/collegeMaster/index'));
+const Reports = lazy(() => import('src/pages/admin/reports/index'));
 const AdmittedList = lazy(() => import('src/pages/admin/adminList/admittedList'));
 const ListOfDocument = lazy(() => import('src/pages/admin/adminList/list-of-document'));
 
@@ -124,7 +125,7 @@ export const adminDashboardRoutes = [
         path: 'adminList',
         element: <Admin />,
       },
-        {
+      {
         path: 'processingPayment',
         element: <ProcessingPayment />,
       },
@@ -136,9 +137,8 @@ export const adminDashboardRoutes = [
         path: 'list-of-document/:course_name/:user_id',
         element: <ListOfDocument />,
       },
-      {        path: 'collegeMaster',
-        element: <CollegeMaster />,
-      },
+      { path: 'collegeMaster', element: <CollegeMaster /> },
+      { path: 'reports', element: <Reports /> },
       {
         path: 'payment',
         element: <Payment />,

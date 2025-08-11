@@ -101,6 +101,7 @@ export const paths = {
         adminList: `${ROOTS.ADMINDASHBOARD}/adminList`,
     adminList: `${ROOTS.ADMINDASHBOARD}/adminList`,
     collegeMaster: `${ROOTS.ADMINDASHBOARD}/collegeMaster`,
+    reports: `${ROOTS.ADMINDASHBOARD}/reports`,
 
     admittedCandidate: (choice_code, course_name) =>
       `${ROOTS.ADMINDASHBOARD}/admittedCandidate/${course_name}/${choice_code}`,

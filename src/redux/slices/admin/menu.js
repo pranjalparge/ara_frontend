@@ -107,7 +107,7 @@ export const authApi = apiSliceAdmin.injectEndpoints({
         // credentials: 'include',
       }),
     }),
-      getProcessingPayment: builder.mutation({
+    getProcessingPayment: builder.mutation({
       query: (body) => ({
         url: `araController/getpaymentstatus?course_name=${body.course_name}&status=${body.status}`,
         method: 'GET',
@@ -115,9 +115,25 @@ export const authApi = apiSliceAdmin.injectEndpoints({
         // credentials: 'include',
       }),
     }),
-        getDocumentList: builder.mutation({
+    getDocumentList: builder.mutation({
       query: (body) => ({
         url: `/araController/getDocList?course_name=${body.course_name}&user_id=${body.user_id}`,
+        method: 'GET',
+        // body: body,
+        // credentials: 'include',
+      }),
+    }),
+    getCollegeMaster: builder.mutation({
+      query: (body) => ({
+        url: `araController/getinstituteDetails?course_name=${body.id}`,
+        method: 'GET',
+        // body: body,
+        // credentials: 'include',
+      }),
+    }),
+    getReports: builder.mutation({
+      query: (body) => ({
+        url: `araController/getreport?course_name=${body.id}`,
         method: 'GET',
         // body: body,
         // credentials: 'include',
@@ -301,15 +317,6 @@ export const authApi = apiSliceAdmin.injectEndpoints({
         params: { url },
       }),
     }),
-
-        getCollegeMaster: builder.mutation({
-      query: (body) => ({
-        url: `araController/getinstituteDetails?course_name=${body.id}`,
-        method: 'GET',
-        // body: body,
-        // credentials: 'include',
-      }),
-    }),
   }),
 });
 
@@ -326,6 +333,7 @@ export const {
   useUpdateSubscriptionMutation,
   useGetInstituteDashboardMutation,
   useGetProcessingPaymentMutation,
+  useGetReportsMutation,
   useGetCandidateListMutation,
   useDeleteAdminListMutation,
   useGetCustomerListMutation,
