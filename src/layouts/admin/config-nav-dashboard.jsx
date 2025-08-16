@@ -23,6 +23,8 @@ const ICONS = {
   register: <Iconify icon="material-symbols:how-to-reg" />,
   institute: <Iconify icon="garden:book-closed-fill-12" />,
   college: <Iconify icon="maki:college" />,
+  reports: <Iconify icon="oui:nav-reports" />,
+  fees: <Iconify icon="mynaui:rupee-square-solid" />,
 };
 
 // ----------------------------------------------------------------------
@@ -81,10 +83,10 @@ export const NavMenu = () => {
     {
       subheader: '',
       items: [
-            {
+        {
           title: 'Processing Fees',
           path: paths.admin.processingPayment,
-          icon: ICONS.user,
+          icon: ICONS.fees,
 
           disabled: user?.role === 0 ? true : false,
         },
@@ -99,6 +101,13 @@ export const NavMenu = () => {
           title: 'College Master',
           path: paths.admin.collegeMaster,
           icon: ICONS.college,
+
+          disabled: user?.role === 0 ? true : false,
+        },
+        {
+          title: 'Reports',
+          path: paths.admin.reports,
+          icon: ICONS.reports,
 
           disabled: user?.role === 0 ? true : false,
         },
