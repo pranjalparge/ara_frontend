@@ -8,7 +8,15 @@ import { CustomBreadcrumbs } from 'src/components/custom-breadcrumbs';
 import { EmptyContent } from 'src/components/empty-content';
 import { DashboardContent } from 'src/layouts/admin/dashboard';
 import {   useGetProcessingPaymentMutation, useDeleteAdminListMutation } from 'src/redux/slices/admin/menu';
-
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper
+} from "@mui/material";
 export function ProductListView() {
   const [tableData, setTableData] = useState([]);
   const router = useRouter();
@@ -213,7 +221,7 @@ const columns = [
           flexDirection: { md: 'column' },
         }}
       >
-        <DataGrid
+        {/* <DataGrid
         rows={mapResponseToRows(data)}
   columns={columns}
   getRowId={(row, index) => row.id || row['Institute Id'] || index}
@@ -232,8 +240,107 @@ const columns = [
               showQuickFilter: true,
             },
           }}
-        />
+        /> */}
       </Card>
+
+             <TableContainer
+            component={Paper}
+            style={{
+              padding: 0,
+              marginTop: 1,
+              marginBottom: 1,
+              height: "auto"
+            }}
+          >
+            <Table>
+              <TableHead>
+         <TableRow sx={{ backgroundColor: "#2a5baaff" }}>
+  <TableCell align="center">Sr</TableCell>
+  <TableCell align="center">Institute Name</TableCell>
+  <TableCell align="center">Intake</TableCell>
+  <TableCell align="center">EWS</TableCell>
+  <TableCell align="center">A.I.Q.</TableCell>
+  <TableCell align="center">S.Q.</TableCell>
+  <TableCell align="center">CAP Fees</TableCell>
+  <TableCell align="center">Mgmt.</TableCell>
+  <TableCell align="center">I.Q.</TableCell>
+  <TableCell align="center">Non-CAP Fees</TableCell>
+  <TableCell align="center">NRI</TableCell>
+  <TableCell align="center">NRI Fees</TableCell>
+  <TableCell align="center">Total Fees</TableCell>
+  <TableCell align="center">Payment</TableCell>
+  <TableCell align="center">Receipt</TableCell>
+  <TableCell align="center">Admissions</TableCell>
+</TableRow>
+
+              </TableHead>
+      
+         <TableBody>
+  {tableData && tableData.length > 0 ? (
+    tableData.map((row, index) => (
+      <TableRow key={row.id}>
+        {/* Sr */}
+        <TableCell align="center">{index + 1}</TableCell>
+
+        {/* Institute Name */}
+        <TableCell align="center">{row["Institute Name"]}</TableCell>
+
+        {/* Intake */}
+        <TableCell align="center">{row["Total No. of CAP Seats"]}</TableCell>
+
+        {/* EWS */}
+        <TableCell align="center">{row["EWS Seats"]}</TableCell>
+
+        {/* A.I.Q. */}
+        <TableCell align="center">{row["CAP Intake"]}</TableCell>
+
+        {/* S.Q. */}
+        <TableCell align="center">{row["TFWS Seats"]}</TableCell>
+
+        {/* CAP Fees */}
+        <TableCell align="center">{row["CAP Amount (Minimum Rs. 20,000/-)"]}</TableCell>
+
+        {/* Mgmt. */}
+        <TableCell align="center">{row["Any Other Scheme seats"]}</TableCell>
+
+        {/* I.Q. */}
+        <TableCell align="center">{row["IL Intake"]}</TableCell>
+
+        {/* Non-CAP Fees */}
+        <TableCell align="center">{row["IL Amount"]}</TableCell>
+
+        {/* NRI */}
+        <TableCell align="center">{row["NRI Seats"]}</TableCell>
+
+        {/* NRI Fees */}
+        <TableCell align="center">{row["NRI Amount"]}</TableCell>
+
+        {/* Total Fees */}
+        <TableCell align="center">{row["Amount Payable as Processing Fees"]}</TableCell>
+
+        {/* Payment */}
+        <TableCell align="center">{row["Paid Amount"]}</TableCell>
+
+        {/* Receipt */}
+        <TableCell align="center">
+          {Number(row["Amount Payable as Processing Fees"]) - Number(row["Paid Amount"])}
+        </TableCell>
+
+        {/* Admissions */}
+        <TableCell align="center">{row["Total Admitted"]}</TableCell>
+      </TableRow>
+    ))
+  ) : (
+    <TableRow>
+      <TableCell align="center" colSpan={16}>
+        No Data Available...
+      </TableCell>
+    </TableRow>
+  )}
+</TableBody>
+
+            </Table>
+          </TableContainer>
     </DashboardContent>
   );
 }

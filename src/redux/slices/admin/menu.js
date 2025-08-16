@@ -115,6 +115,17 @@ export const authApi = apiSliceAdmin.injectEndpoints({
         // credentials: 'include',
       }),
     }),
+
+   getDashboardData: builder.mutation({
+      query: (body) => ({
+        url: `araController/getdashboardreport?course_name=${body.id}`,
+        method: 'GET',
+        // body: body,
+        // credentials: 'include',
+      }),
+    }),
+
+    
         getDocumentList: builder.mutation({
       query: (body) => ({
         url: `/araController/getDocList?course_name=${body.course_name}&user_id=${body.user_id}`,
@@ -123,6 +134,7 @@ export const authApi = apiSliceAdmin.injectEndpoints({
         // credentials: 'include',
       }),
     }),
+
     deleteAdminList: builder.mutation({
       query: (body) => ({
         url: `api/userDetails/deleteuser`,
@@ -246,6 +258,7 @@ export const authApi = apiSliceAdmin.injectEndpoints({
         method: 'GET',
       }),
     }),
+
     getApp: builder.mutation({
       query: (body) => ({
         url: `api/fpii/homepageRoutes/app/get`,
@@ -294,6 +307,7 @@ export const authApi = apiSliceAdmin.injectEndpoints({
         body: body,
       }),
     }),
+
     getSeoStatus: builder.mutation({
       query: (url) => ({
         url: `api/statusBar/get`,
@@ -344,6 +358,7 @@ export const {
   useGetDocumentListMutation,
   useGetBlogDetailssaasMutation,
   useEditBlogDetailsllcMutation,
+  useGetDashboardDataMutation,
 
   useGetAppMutation,
   useEditAppMutation,
